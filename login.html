@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Ninjas - Login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+    <!-- Upper Left Logo Assembly -->
+    <div class="brand-header">
+        <div class="ninja-logo"></div>
+        <div class="brand-text">404 Ninjas</div>
+    </div>
+
+    <!-- Crisp Detailed Dotted World Map Layout -->
+    <svg class="map-background" viewBox="0 0 1000 500" fill="none" xmlns="http://w3.org">
+        <circle cx="150" cy="120" r="14" fill="#1e293b" opacity="0.4"/>
+        <circle cx="200" cy="150" r="25" fill="#1e293b" opacity="0.4"/>
+        <circle cx="250" cy="180" r="18" fill="#1e293b" opacity="0.4"/>
+        <circle cx="300" cy="320" r="22" fill="#1e293b" opacity="0.4"/>
+        <circle cx="320" cy="380" r="15" fill="#1e293b" opacity="0.4"/>
+        <circle cx="500" cy="140" r="20" fill="#1e293b" opacity="0.4"/>
+        <circle cx="520" cy="240" r="18" fill="#1e293b" opacity="0.4"/>
+        <circle cx="540" cy="320" r="24" fill="#1e293b" opacity="0.4"/>
+        <circle cx="700" cy="130" r="28" fill="#1e293b" opacity="0.4"/>
+        <circle cx="760" cy="180" r="32" fill="#1e293b" opacity="0.4"/>
+        <circle cx="820" cy="220" r="20" fill="#1e293b" opacity="0.4"/>
+        <circle cx="800" cy="360" r="22" fill="#1e293b" opacity="0.4"/>
+        <circle cx="230" cy="160" r="4" fill="#3b82f6" opacity="0.7"/>
+        <circle cx="510" cy="135" r="3" fill="#3b82f6" opacity="0.7"/>
+        <circle cx="740" cy="165" r="5" fill="#3b82f6" opacity="0.7"/>
+    </svg>
+
+    <!-- Center Interactive Card -->
+    <div class="login-card">
+        <h2>Welcome Back</h2>
+        <p>Log in to your 404Ninjas account</p>
+        
+        <form>
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" autocomplete="off" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" autocomplete="off" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" required>
+            </div>
+            
+            <button type="submit" class="login-btn">Log in</button>
+        </form>
+        
+        <div class="forgot-container">
+            <a href="#" class="forgot-link">Forgot your password?</a>
+        </div>
+    </div>
+    <script src="login.js" defer></script>
+
+</body>
+</html>

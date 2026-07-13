@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile - EsportsHub</title>
+  <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+
+  <!-- GLOBAL NAV HEADER -->
+  <header class="site-header">
+    <div class="logo">EsportsHub</div>
+    <div class="search-container">
+      <input type="text" class="genre-search" placeholder="Search genres...">
+    </div>
+    <nav class="nav-links">
+      <a href="/home">Home</a>
+      <a href="/tournaments">Tournaments</a>
+      <a href="/leaderboard">Leaderboard</a>
+      <a href="/teams">Teams</a>
+      <a href="/profile" class="active">Profile</a>
+      <a href="/login" class="login-btn">Login</a>
+    </nav>
+  </header>
+
+  <!-- PROFILE MAIN WORKSPACE -->
+  <main class="profile-layout">
+    
+    
+    <aside class="profile-sidebar">
+      <div class="avatar-container">
+        <!-- Circular profile placeholder -->
+        <div class="avatar-placeholder">GX</div>
+      </div>
+      <h2 class="username">GamerX</h2>
+      <p class="user-bio">Competitive FPS and MOBA player. Reaching for the leaderboard top rank.</p>
+      
+      <!-- Mini Quick Stats -->
+      <div class="sidebar-stats">
+        <div class="side-stat">
+          <span class="stat-val">Level 42</span>
+        </div>
+        <div class="side-stat">
+          <span class="stat-val">340 Wins</span>
+        </div>
+      </div>
+
+      <button class="edit-profile-btn">Edit Profile</button>
+    </aside>
+
+    <!-- Right Column: User Dashboard Content -->
+    <section class="profile-content">
+      
+      <!-- Platform Setup Information Card -->
+      <div class="content-card">
+        <h3>Gaming Platforms</h3>
+        <div class="platform-tags">
+          <span class="platform-tag">PC Master Race</span>
+          <span class="platform-tag">PlayStation 5</span>
+          <span class="platform-tag">Mobile (iOS)</span>
+        </div>
+      </div>
+
+      <!-- Favorite Esports Genres Card -->
+      <div class="content-card">
+        <h3>Favorite Genres</h3>
+        <div class="genre-list">
+          <div class="genre-item">
+            <span>FPS (First-Person Shooter)</span>
+            <div class="progress-bar"><div class="progress-fill" style="width: 85%;"></div></div>
+          </div>
+          <div class="genre-item">
+            <span>MOBA (Battle Arena)</span>
+            <div class="progress-bar"><div class="progress-fill" style="width: 70%;"></div></div>
+          </div>
+          <div class="genre-item">
+            <span>Battle Royale</span>
+            <div class="progress-bar"><div class="progress-fill" style="width: 40%;"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Competitive Tournaments List -->
+      <div class="content-card">
+        <h3>Active Tournaments</h3>
+        <ul class="tournament-list">
+          <li>
+            <span class="t-name">Valorant Champions Series</span>
+            <span class="t-status live">Live Match</span>
+          </li>
+          <li>
+            <span class="t-name">League of Legends Regional Cup</span>
+            <span class="t-status upcoming">July 15</span>
+          </li>
+        </ul>
+      </div>
+
+    </section>
+  </main>
+  <script src="profile.js" defer></script>
+
+</body>
+</html>

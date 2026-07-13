@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Esports Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+  <!-- GLOBAL NAV HEADER -->
+  <header class="site-header">
+    <div class="logo"> 🥷 404 Ninjas</div>
+    
+    <!-- Transparent Genre Search Box Component -->
+    <div class="search-container">
+      <input 
+        type="text" 
+        class="genre-search" 
+        placeholder="Search genres (e.g., MOBA, FPS)..."
+      >
+    </div>
+    
+    <nav class="nav-links">
+      <!-- Clicking this link will now show/hide the chat box smoothly without reloading the page -->
+      <a href="dashboard-chat.html" onclick="toggleChat(event)">💬 Open Tournament Chat</a>
+      <!-- This hidden frame holds your chat code and sits on the side of the screen -->
+<div id="chatWidget" style="display: none; position: fixed; bottom: 20px; right: 20px; z-index: 9999;">
+    <iframe src="dashboard-chat.html" style="width: 380px; height: 500px; border: none; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);"></iframe>
+</div>
+
+      <script>
+      function toggleChat(event) {
+      event.preventDefault(); // Prevents the browser from jumping to the top of the page
+      const chat = document.getElementById('chatWidget');
+    
+      if (chat.style.display === 'none') {
+        chat.style.display = 'block';
+      } else {
+        chat.style.display = 'none';
+      }
+    }
+      </script>
+
+      <a href="/tournaments">Tournaments</a>
+      <a href="profile.html" class="active">Profile</a>
+    </nav>
+  </header>
+
+  <!-- UNIQUE CONTENT CORE -->
+  <main class="dashboard-main">
+    
+    <!-- Hero Header Title Block -->
+    <section class="hero-section">
+      <h1>Discover Esports by Genre</h1>
+      <p>Track metrics, metas, and professional matches across the industry.</p>
+    </section>
+    
+    <!-- Games Grid Content Section -->
+    <section class="games-grid">
+      
+      <!-- MOBA Card Item -->
+      <div class="game-card">
+        <div class="card-tag">MOBA</div>
+        <h3>Multiplayer Battle Arena</h3>
+        <p>Strategic team-based map control objectives.</p>
+        <span class="card-meta">Top Titles: LoL, Dota 2</span>
+      </div>
+
+      <!-- FPS Card Item -->
+      <div class="game-card">
+        <div class="card-tag">FPS</div>
+        <h3>First-Person Shooter</h3>
+        <p>Tactical reflex gunplay and objective defense.</p>
+        <span class="card-meta">Top Titles: CS2, Valorant</span>
+      </div>
+
+      <!-- Battle Royale Card Item -->
+      <div class="game-card">
+        <div class="card-tag">BR</div>
+        <h3>Battle Royale</h3>
+        <p>Last-man-standing survival drop-in matches.</p>
+        <span class="card-meta">Top Titles: PUBG, Apex</span>
+      </div>
+
+    </section>
+
+    <!-- Pure CSS Accordion FAQ Section Component -->
+    <section class="faq-container" id="faq">
+      <h2 class="faq-title">Frequently Asked Questions</h2>
+
+      <div class="faq-item">
+        <input type="checkbox" id="faq1" class="faq-toggle">
+        <label for="faq1" class="faq-question">What is an esports genre?<span class="faq-icon"></span></label>
+        <div class="faq-answer">
+          <p>An esports genre is a specific category of competitive video games grouped by unique mechanics, rules, and camera perspectives.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <input type="checkbox" id="faq2" class="faq-toggle">
+        <label for="faq2" class="faq-question">How often are website statistics updated?<span class="faq-icon"></span></label>
+        <div class="faq-answer">
+          <p>Our website stats, tournament placements, and active player metrics are updated continuously using live official competitive API feeds.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- STYLED STRUCTURAL FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      
+      <!-- Column 1: Website Stats -->
+      <div class="footer-section stats-section">
+        <h3>Website Stats</h3>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-number">150+</span>
+            <span class="stat-label">Esports Games</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">12k</span>
+            <span class="stat-label">Active Users</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Column 2: Learn More Info block -->
+      <div class="footer-section learn-more-section">
+        <h3>Learn More</h3>
+        <p>Discover the fast-growing world of professional gaming. We track competitive tournaments, player statistics, and shifting metas across all major global titles.</p>
+        <a href="/about" class="learn-more-btn">Read Our Mission &rarr;</a>
+      </div>
+
+      <!-- Column 3: Legal Shortcut Nav Links -->
+      <div class="footer-section links-section">
+        <h3>Legal & Privacy</h3>
+        <ul>
+          <li><a href="/terms">Terms & Conditions</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="#faq">FAQ Section</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 EsportsHub. All rights reserved.</p>
+    </div>
+  </footer>
+  <script src="dashboard.js" defer></script>
+
+
+
+</body>
+</html>

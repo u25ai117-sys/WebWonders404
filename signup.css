@@ -1,0 +1,129 @@
+/* Base Page Settings */
+body {
+  background-color: #050814;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Perfectly vertical centers the form container */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Centralized Sign Up Card */
+.signup-container {
+  background-color: #02040a; /* Matches your dark footer color */
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 420px; /* Optimal reading/typing box width */
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Header Context */
+.form-header h2 {
+  color: #ffffff;
+  margin: 0 0 10px 0;
+  font-size: 26px;
+}
+
+.form-header p {
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0 0 30px 0;
+  font-size: 14px;
+}
+
+/* Input Fields Wrapper */
+.input-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+/* Secure & Translucent Input Fields */
+.input-group input {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  padding: 12px 16px;
+  font-size: 15px;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-group input:focus {
+  border-color: #3b82f6; /* Blue glow signature */
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.3);
+}
+
+/* Placeholder Utility styling overrides */
+.input-group input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* Checkbox Alignment wrapper */
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.checkbox-group input[type="checkbox"] {
+  accent-color: #3b82f6; /* Colors the default browser checkbox to your blue accent */
+  cursor: pointer;
+}
+
+.checkbox-group label {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+}
+
+.checkbox-group a, .form-footer a {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+.checkbox-group a:hover, .form-footer a:hover {
+  text-decoration: underline;
+}
+
+/* High-contrast Action Submission Button */
+.submit-btn {
+  background-color: #3b82f6;
+  color: #ffffff;
+  border: none;
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.submit-btn:hover {
+  background-color: #2563eb; /* Slightly darker shade of blue */
+}
+
+.submit-btn:active {
+  transform: scale(0.98); /* Tactile button press simulation effect */
+}
+
+/* Bottom Nav Link Context */
+.form-footer {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 14px;
+  margin: 25px 0 0 0;
+}

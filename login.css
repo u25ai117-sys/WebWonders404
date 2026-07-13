@@ -1,0 +1,196 @@
+body {
+            margin: 0;
+            padding: 0;
+            background-color: #050814;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;   /* Allows elements to stack vertically if needed */
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;       /* Prevents messy horizontal scrollbars */
+            position: relative;
+            padding: 20px;            /* Acts as a safety buffer zone on tiny screens */
+            box-sizing: border-box;
+        }
+
+        /* 2. Semi-Transparent Grid Overlay */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: 35px 35px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* 3. High-Definition Vector Dotted World Map */
+        .map-background {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 95vw;
+            max-width: 1400px;
+            height: auto;
+            opacity: 0.28;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* 4. Desktop Top-Left Branding Header */
+        .brand-header {
+            position: absolute;
+            top: 32px;
+            left: 32px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 10;
+        }
+
+        .ninja-logo {
+            width: 44px;
+            height: 44px;
+            background-color: #111726;
+            border: 2px solid #3b82f6;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .ninja-logo::before {
+            content: "🥷";
+            font-size: 22px;
+        }
+
+        .brand-text {
+            color: #ffffff;
+            font-size: 22px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        /* 5. Center Glassmorphism Login Card */
+        .login-card {
+            width: 100%;              /* Allows the card to shrink flexibly */
+            max-width: 400px;         /* Limits width on large computer displays */
+            background-color: rgba(13, 19, 36, 0.92);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 40px 36px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            z-index: 5;
+            box-sizing: border-box;
+            backdrop-filter: blur(8px);
+        }
+
+        .login-card h2 {
+            color: #ffffff;
+            font-size: 28px;
+            margin: 0 0 6px 0;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .login-card p {
+            color: #64748b;
+            font-size: 14px;
+            margin: 0 0 32px 0;
+            text-align: center;
+        }
+
+        /* 6. Form Styling */
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #94a3b8;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 14px;
+            background-color: #161f33;
+            border: 1px solid #23314d;
+            border-radius: 6px;
+            color: #ffffff;
+            font-size: 14px;
+            box-sizing: border-box;
+            transition: all 0.2s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            background-color: #1b263f;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.25);
+        }
+
+        /* 7. Action Items */
+        .login-btn {
+            width: 100%;
+            padding: 13px;
+            background-color: #3b82f6;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.2s;
+        }
+
+        .login-btn:hover {
+            background-color: #2563eb;
+        }
+
+        .forgot-container {
+            text-align: center;
+            margin-top: 24px;
+        }
+
+        .forgot-link {
+            color: #475569;
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.2s;
+        }
+
+        .forgot-link:hover {
+            color: #3b82f6;
+        }
+
+        /* ==========================================================
+           8. RESPONSIVE DESIGN ENGINE (The Magic Collision Fix)
+           ========================================================== */
+        @media (max-width: 768px) {
+            body {
+                justify-content: flex-start; /* Aligns layout components from the top */
+                padding-top: 40px;           /* Gives breathing room above the logo */
+            }
+
+            .brand-header {
+                position: static;            /* Disables the absolute top-left lock */
+                margin-bottom: 30px;         /* Uniformly pushes the box down below it */
+            }
+            
+            .login-card {
+                padding: 30px 24px;          /* Shrinks box padding slightly for mobile screens */
+            }
+        }

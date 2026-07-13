@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Esports Teams - EsportsHub</title>
+  <link rel="stylesheet" href="teams.css">
+</head>
+<body>
+
+  <!-- GLOBAL NAV HEADER -->
+  <header class="site-header">
+    <div class="logo">EsportsHub</div>
+    <div class="search-container">
+      <input type="text" class="genre-search" placeholder="Search teams or organizations...">
+    </div>
+    <nav class="nav-links">
+      <a href="/home">Home</a>
+      <a href="/tournaments">Tournaments</a>
+      <a href="/leaderboard">Leaderboard</a>
+      <a href="/teams" class="active">Teams</a>
+      <a href="/profile">Profile</a>
+      <a href="/login" class="login-btn">Login</a>
+    </nav>
+  </header>
+
+  <!-- TEAMS CORE WORKSPACE -->
+  <main class="teams-container">
+    
+    <!-- Page Header Context -->
+    <section class="teams-hero">
+      <h1>Professional Teams</h1>
+      <p>Browse active organizations, current competitive rosters, and global team statistics.</p>
+    </section>
+
+    <!-- Professional Orgs Grid -->
+    <section class="teams-grid">
+
+      <!-- Team Card 1 -->
+      <div class="team-card">
+        <div class="team-banner color-blue"></div>
+        <div class="team-card-content">
+          <div class="team-badge">T1</div>
+          <h2 class="team-name">Team One Esports</h2>
+          <p class="team-region">Region: North America</p>
+          
+          <div class="active-genres">
+            <span class="genre-tag">FPS</span>
+            <span class="genre-tag">MOBA</span>
+          </div>
+
+          <div class="roster-preview">
+            <h3>Active Roster</h3>
+            <ul>
+              <li><span class="player-name">AlphaClick</span> <span class="player-role">IGL</span></li>
+              <li><span class="player-name">ViperX</span> <span class="player-role">Duelist</span></li>
+              <li><span class="player-name">Chronos</span> <span class="player-role">Support</span></li>
+            </ul>
+          </div>
+          <button class="view-stats-btn">View Organization Stats</button>
+        </div>
+      </div>
+
+      <!-- Team Card 2 -->
+      <div class="team-card">
+        <div class="team-banner color-purple"></div>
+        <div class="team-card-content">
+          <div class="team-badge">NV</div>
+          <h2 class="team-name">Nova Gaming</h2>
+          <p class="team-region">Region: Europe East</p>
+          
+          <div class="active-genres">
+            <span class="genre-tag">Battle Royale</span>
+            <span class="genre-tag">FPS</span>
+          </div>
+
+          <div class="roster-preview">
+            <h3>Active Roster</h3>
+            <ul>
+              <li><span class="player-name">Phoenix</span> <span class="player-role">Captain</span></li>
+              <li><span class="player-name">SnipeGod</span> <span class="player-role">Fragger</span></li>
+              <li><span class="player-name">Aegis</span> <span class="player-role">Anchor</span></li>
+            </ul>
+          </div>
+          <button class="view-stats-btn">View Organization Stats</button>
+        </div>
+      </div>
+
+      <!-- Team Card 3 -->
+      <div class="team-card">
+        <div class="team-banner color-amber"></div>
+        <div class="team-card-content">
+          <div class="team-badge">Z3</div>
+          <h2 class="team-name">Zenith 3</h2>
+          <p class="team-region">Region: Asia Pacific</p>
+          
+          <div class="active-genres">
+            <span class="genre-tag">MOBA</span>
+            <span class="genre-tag">Strategy</span>
+          </div>
+
+          <div class="roster-preview">
+            <h3>Active Roster</h3>
+            <ul>
+              <li><span class="player-name">Kael_Thas</span> <span class="player-role">Midlaner</span></li>
+              <li><span class="player-name">ShadowFI</span> <span class="player-role">Carry</span></li>
+              <li><span class="player-name">Lotus</span> <span class="player-role">Jungler</span></li>
+            </ul>
+          </div>
+          <button class="view-stats-btn">View Organization Stats</button>
+        </div>
+      </div>
+
+    </section>
+  </main>
+  <script src="teams.js" defer></script>
+
+</body>
+</html>

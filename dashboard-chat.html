@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tournament Dashboard Chat</title>
+    <!-- Load Socket.io Client Library -->
+    <script src="https://jsdelivr.net"></script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 20px; display: flex; justify-content: center; }
+        
+        /* Fixed positioning allows it to act as a sleek sidebar/widget on your dashboard */
+        .chat-container { 
+            width: 100%; 
+            max-width: 380px; 
+            background-color: #1e1e1e; 
+            border-radius: 12px; 
+            overflow: hidden; 
+            display: flex; 
+            flex-direction: column; 
+            height: 500px; 
+            box-shadow: 0 8px 24px rgba(0,0,0,0.6); 
+            border: 1px solid #2d2d2d;
+            transition: height 0.3s ease, transform 0.3s ease; /* Smooth collapse animation */
+        }
+
+        /* Target state when user clicks collapse */
+        .chat-container.collapsed {
+            height: 48px; /* Matches header size exactly */
+        }
+
+        /* Chat Header with Action Controls */
+        .chat-header { 
+            background: linear-gradient(135deg, #646cff, #4b52c7); 
+            padding: 0 15px; 
+            height: 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold; 
+            font-size: 1.0em; 
+            letter-spacing: 0.5px;
+            user-select: none;
+            color: #fff;
+        }
+
+        .header-title { display: flex; align-items: center; gap: 8px; }
+
+        /* Control Action Buttons */
+        .chat-controls { display: flex; gap: 6px; }
+        .control-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background 0.2s;
+        }
+        .control-btn:hover { background: rgba(255, 255, 255, 0.25); }
+        .control-btn.active-mute { background: #ff4d4d; animation: pulse 1.5s infinite; }
+
+        /* Dynamic content area that hides upon collapsing */
+        .chat-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            overflow: hidden;
+            transition: opacity 0.2s ease;
+        }
+        .chat-container.collapsed .chat-content-wrapper {
+            opacity: 0;
+            pointer-events: none; /* Block interactions when hidden */
+        }
+
+        .config-bar { padding: 8px 15px; background-color: #252525; border-bottom: 1px solid #2d2d2d; font-size: 0.85em; display: flex; gap: 8px; align-items: center; }
+        .status-dot { width: 8px; height: 8px; background-color: #ff4d4d; border-radius: 50%; }
+        .status-dot.connected { background-color: #4dec7a; }
+        
+        #messages { flex: 1; padding: 15px; overflow-y: auto; list-style-type: none; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+        #messages li { padding: 10px 14px; background-color: #2a2a2a; border-radius: 8px; border-bottom-left-radius: 2px; max-width: 85%; word-break: break-word; align-self: flex-start; }
+        #messages li.system-msg { background-color: transparent; color: #888; font-style: italic; font-size: 0.9em; align-self: center; text-align: center; border-radius: 0; }
+        
+        .chat-form { padding: 15px; background-color: #181818; display: flex; gap: 8px; border-top: 1px solid #2d2d2d; }
+        #username { width: 75px; padding: 10px; border-radius: 6px; border: 1px solid #333; background-color: #252525; color: #fff; text-align: center; font-size: 0.9em; }
+        #input { flex: 1; padding: 10px; border-radius: 6px; border: 1px solid #333; background-color: #252525; color: #fff; font-size: 0.9em; }
+        #input:focus, #username:focus { border-color: #646cff; outline: none; }
+        
+        .submit-btn { padding: 10px 14px; background-color: #646cff; color: #fff; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; }
+        .submit-btn:hover { background-color: #535bf2; }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="chat-container" id="chatContainer">
+    <!-- Header stays visible at all times -->
+    <div class="chat-header">
+        <div class="header-title">🎮 Match Shoutbox</div>
+        <div class="chat-controls">
+            <button class="control-btn" id="muteBtn" title="Mute/Unmute Notifications">🔊</button>
+            <button class="control-btn" id="toggleBtn" title="Collapse/Expand Chat">👁️</button>
+        </div>
+    </div>
+    
+    <!-- This wrapper container structuralises everything disappearing on collapse -->
+    <div class="chat-content-wrapper">
+        <div class="config-bar">
+            <div id="statusIndicator" class="status-dot"></div>
+            <span id="statusText">Disconnected</span>
+        </div>
+
+        <ul id="messages">
+            <li class="system-msg">Chat loaded. Toggle controls above to manage distractions.</li>
+        </ul>
+
+        <form class="chat-form" id="form" action="">
+            <input id="username" type="text" value="Player" placeholder="Name" autocomplete="off" maxlength="10" />
+            <input id="input" autocomplete="off" placeholder="Press Enter to send..." maxlength="150" />
+            <button class="submit-btn" type="submit">Send</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    // --- APP STATE VARIABLES ---
+    let isMuted = false;
+    const SERVER_URL = 'https://pie-socket.io-demo.com'; 
+
+    // Initialize Socket Instance
+    const socket = io(SERVER_URL, { autoConnect: true, transports: ['websocket', 'polling'] });
+
+    // --- DOM SELECTIONS ---
+    const chatContainer = document.getElementById('chatContainer');
+    const toggleBtn = document.getElementById('toggleBtn');
+    const muteBtn = document.getElementById('muteBtn');
+    const form = document.getElementById('form');
+    const input = document.getElementById('input');
+    const usernameInput = document.getElementById('username');
+    const messages = document.getElementById('messages');
+    const statusDot = document.getElementById('statusIndicator');
+    const statusText = document.getElementById('statusText');
+
+    usernameInput.value = 'Player_' + Math.floor(100 + Math.random() * 900);
+
+    // --- INTERFACE CONTROL LOGIC ---
+
+    // 1. Collapse / Expand Widget Toggle
+    toggleBtn.addEventListener('click', () => {
+        chatContainer.classList.toggle('collapsed');
+        if(chatContainer.classList.contains('collapsed')) {
+            toggleBtn.textContent = '❌'; // Visual indicator to show it can be reopened
+        } else {
+            toggleBtn.textContent = '👁️';
+            messages.scrollTop = messages.scrollHeight; // Auto recalculate scroll on wake
+        }
+    });
+
+    // 2. Mute Feed Stream Toggle
+    muteBtn.addEventListener('click', () => {
+        isMuted = !isMuted;
+        if(isMuted) {
+            muteBtn.textContent = '🔇';
+            muteBtn.classList.add('active-mute');
+            appendSystemMessage('System: Incoming lobby messages hidden to prevent match distraction.');
+        } else {
+            muteBtn.textContent = '🔊';
+            muteBtn.classList.remove('active-mute');
+            appendSystemMessage('System: Feed unmuted.');
+        }
+    });
+
+    // --- NETWORK CONNECTION HANDLERS ---
+    socket.on('connect', () => {
+        statusDot.className = 'status-dot connected';
+        statusText.textContent = `Connected`;
+    });
+
+    socket.on('disconnect', () => {
+        statusDot.className = 'status-dot';
+        statusText.textContent = 'Disconnected';
+    });
+
+    // --- MESSAGE PROCESSING ---
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const messageText = input.value.trim();
+        const username = usernameInput.value.trim() || 'Anonymous';
+
+        if (messageText) {
+            const payload = {
+                user: username,
+                text: messageText,
+                timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+            };
+            socket.emit('chat message', payload);
+            input.value = '';
+            input.focus();
+        }
+    });
+
+    socket.on('chat message', (data) => {
+        // Block processing pipeline if client activated mute toggle
+        if (isMuted) return;
+        displayMessage(data);
+    });
+
+    // --- UI VIEW UPDATE HELPERS ---
+    function displayMessage(data) {
+        const item = document.createElement('li');
+        if (typeof data === 'object' && data !== null) {
+            item.innerHTML = `<strong style="color: #646cff;">${escapeHTML(data.user)}</strong> <span style="font-size: 0.75em; color: #666;">${data.timestamp || ''}</span><br>${escapeHTML(data.text)}`;
+        } else {
+            item.textContent = data;
+        }
+        messages.appendChild(item);
+        // Only scroll if container is actually expanded and visible
+        if(!chatContainer.classList.contains('collapsed')) {
+            messages.scrollTop = messages.scrollHeight;
+        }
+    }
+
+    function appendSystemMessage(text) {
+        const item = document.createElement('li');
+        item.className = 'system-msg';
+        item.textContent = text;
+        messages.appendChild(item);
+        messages.scrollTop = messages.scrollHeight;
+    }
+
+    function escapeHTML(str) {
+        return str.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
+    }
+</script>
+
+</body>
+</html>

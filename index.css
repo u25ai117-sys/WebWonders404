@@ -1,0 +1,527 @@
+body { 
+      margin: 0; 
+      padding: 0; 
+      background-color: #050814; 
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI" , Roboto, Arial, sans-serif; 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      min-height: 100vh; 
+      overflow-x: hidden; 
+      padding: 120px 20px 40px 20px; /* Top padding leaves room for fixed header */
+      box-sizing: border-box; 
+    } 
+
+    /* Fixed & Updated Header Layout */
+    .brand-header { 
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      right: 0;
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between;
+      padding: 20px 32px;
+      background-color: rgba(5, 8, 20, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+      z-index: 100; 
+    } 
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .ninja-logo { 
+      width: 44px; 
+      height: 44px; 
+      background-color: #111726; 
+      border: 2px solid #3b82f6; 
+      border-radius: 50%; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      box-shadow: 0 0 15px rgba(59, 130, 246, 0.3); 
+    } 
+
+    .ninja-logo::before { 
+      content: "🥷"; 
+      font-size: 22px; 
+    } 
+
+    .brand-text { 
+      color: #3b82f6; /* Shifted to clean gaming blue to match logo accent */
+      font-size: 22px; 
+      font-weight: 800; 
+      text-transform: uppercase; 
+      letter-spacing: 1.5px; 
+    } 
+
+    .search-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* The Search Input Element */
+    .genre-search {
+      /* Width behavior */
+      width: 50%;            /* Expands or shrinks dynamically with the window */
+      min-width: 280px;      /* Stops shrinking completely at this point */
+      max-width: 600px;      /* Prevents it from looking too wide on large screens */
+      
+      /* Transparency & Background */
+      background-color: rgba(255, 255, 255, 0.05); /* Soft, semi-transparent overlay */
+      border: 1px solid rgba(255, 255, 255, 0.2);  /* Subtle transparent border */
+      color: #ffffff;                             /* White text for typed genres */
+      
+      /* Styling & Spacing */
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 25px;
+      outline: none;
+      transition: all 0.3s ease; /* Smooth focus effect */
+    }
+
+    /* Hover effect */
+    .genre-search:hover {
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    /* Focus state (when clicked) */
+    .genre-search:focus {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-color: #3b82f6; /* Subtle blue glow on focus */
+      box-shadow: 0 0 8px rgba(59, 130, 246, 0.4);
+    }
+
+    /* Custom Placeholder Color */
+    .genre-search::placeholder {
+      color: rgba(255, 255, 255, 0.5); /* Muted semi-transparent white */
+      opacity: 1; /* Fixes Firefox opacity drop */
+    }
+
+    /* --- Auth Buttons Layout --- */
+    .auth-buttons {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      font-size: 14px;
+      /* font-weight: 700; */
+      white-space: nowrap;
+      text-transform: uppercase;
+      /* border-radius: 6px; */
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+  
+    }
+
+    .btn-login {
+      background: transparent;
+      color: #3b82f6;
+      /* border: 2px solid #3b82f6; */
+    }
+
+    .btn-login:hover {
+      /* background-color: rgba(59, 130, 246, 0.1); */
+      text-decoration: underline;
+    }
+
+    .btn-signup {
+      background: transparent;
+      /* background-color: #3b82f6;
+      color: white;
+      border: 2px solid #3b82f6;
+      box-shadow: 0 0 15px rgba(59, 130, 246, 0.3); */
+      color: #3b82f6;
+    }
+
+    .btn-signup:hover {
+      /* background-color: #2563eb;
+      border-color: #2563eb;
+      transform: translateY(-1px); */
+      text-decoration: underline;
+    }
+
+    .btn-help-center{
+      background: transparent;
+      color: #3b82f6;
+      /* border: 2px solid #3b82f6; */
+    }
+    .btn-help-center:hover {
+      /* background-color: rgba(59, 130, 246, 0.1); */
+      text-decoration: underline;
+    }
+    .question-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.15em;
+    height: 1.15em;
+    border: 1px solid currentColor; /* Thin line matches the ⓘ style */
+    border-radius: 50%;
+    font-size: 0.9em;
+    font-family: system-ui, sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    }
+
+
+    /* --- Main Workspace Layout --- */
+    .main-container {
+      width: 100%;
+      max-width: 1200px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      margin-top: 20px;
+    }
+
+    @media (min-width: 992px) {
+      .main-container {
+        grid-template-columns: 2fr 1fr; /* Games on left, Leaderboard on right */
+      }
+    }
+
+    .section-title {
+      color: white;
+      font-family: Impact, Haettenschweiler, "Arial Narrow Bold" , sans-serif; 
+      font-size: 32px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      border-left: 4px solid #3b82f6;
+      padding-left: 12px;
+    }
+
+    /* --- Games Display Grid --- */
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .game-card {
+      background-color: #0b1126;
+      border: 1px solid rgba(59, 130, 246, 0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .game-card:hover {
+      transform: scale(1.03);
+      border-color: #3b82f6;
+      box-shadow: 0 10px 20px rgba(59, 130, 246, 0.15);
+    }
+
+    .game-image {
+      width: 100%;
+      height: 180px;
+      object-fit: contain;
+      background-color: #172242; /* Placeholder background color */
+    }
+
+    .game-info {
+      padding: 16px;
+    }
+
+    .game-name {
+      color: white;
+      font-size: 18px;
+      font-weight: 700;
+      margin: 0 0 6px 0;
+    }
+
+    .game-genre {
+      color: #64748b;
+      font-size: 13px;
+      margin: 0;
+      text-transform: uppercase;
+    }
+
+    /* --- Leaderboard UI Component --- */
+    .leaderboard-panel {
+      background-color: #0b1126;
+      border: 1px solid rgba(59, 130, 246, 0.1);
+      border-radius: 12px;
+      padding: 24px;
+      height: fit-content;
+    }
+
+    .leaderboard-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .leaderboard-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px;
+      background-color: #111833;
+      border-radius: 8px;
+      border: 1px solid transparent;
+    }
+
+    .leaderboard-item.top-three {
+      border-color: rgba(234, 179, 8, 0.3); /* Soft gold hint for top players */
+    }
+
+    .player-profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .rank-number {
+      font-family: Impact, sans-serif;
+      font-size: 18px;
+      color: #64748b;
+      width: 24px;
+    }
+
+    .top-three .rank-number {
+      color: #eab308; /* Gold color */
+    }
+
+    .player-name {
+      color: white;
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    .player-points {
+      color: #3b82f6;
+      font-family: monospace;
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    /* Main Footer Container */
+.site-footer {
+  background-color: #02040a; /* Slightly darker than your #050814 page background */
+  border-top: 1px solid rgba(255, 255, 255, 0.05); /* Subtle top boundary line */
+  color: rgba(255, 255, 255, 0.6); /* Muted light text */
+  padding: 40px 20px 20px 20px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+/* Flexbox Wrapper for Columns */
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap; /* Wraps cleanly on small mobile screens */
+  gap: 30px;
+}
+
+/* Individual Column Styles */
+.footer-section {
+  flex: 1;
+  min-width: 250px; /* Protects layout on window resize */
+}
+
+.footer-section h3 {
+  color: #ffffff; /* Bright white headers */
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+/* --- Stats Column Styling --- */
+.stats-grid {
+  display: flex;
+  gap: 20px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-number {
+  color: #3b82f6; /* Accent color (Blue) for numbers */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* --- Links Column Styling --- */
+.links-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.links-section li {
+  margin-bottom: 10px;
+}
+
+.links-section a {
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+/* Hover state for links */
+.links-section a:hover {
+  color: #ffffff; 
+}
+
+/* --- Copyright Bottom Bar --- */
+.footer-bottom {
+  max-width: 1200px;
+  margin: 30px auto 0 auto;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* Style the explanatory paragraph */
+.learn-more-section p {
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.5); /* Slightly dimmer text for body copy */
+  margin-bottom: 15px;
+}
+
+/* Style the interactive "Read Our Mission" link */
+.learn-more-btn {
+  color: #3b82f6; /* Blue accent color to match your stats */
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+/* Hover state: creates a subtle slide-right animation */
+.learn-more-btn:hover {
+  color: #60a5fa; /* Lighter blue highlight */
+  transform: translateX(5px); /* Moves the arrow slightly to the right */
+}
+
+/* FAQ Section Container */
+.faq-container {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 0 20px;
+  font-family: Arial, sans-serif;
+}
+
+.faq-title {
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+}
+
+/* Individual FAQ Item Wrapper */
+.faq-item {
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+/* Hide the checkbox completely */
+.faq-toggle {
+  display: none;
+}
+
+/* Question Styling (The clickable label) */
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s ease;
+}
+
+.faq-question:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Plus/Minus Icon using CSS pseudo-elements */
+.faq-icon {
+  position: relative;
+  width: 12px;
+  height: 12px;
+}
+
+.faq-icon::before,
+.faq-icon::after {
+  content: "";
+  position: absolute;
+  background-color: #3b82f6; /* Blue accent color */
+  transition: transform 0.2s ease;
+}
+
+/* Horizontal line */
+.faq-icon::before {
+  top: 5px;
+  left: 0;
+  width: 12px;
+  height: 2px;
+}
+
+/* Vertical line */
+.faq-icon::after {
+  top: 0;
+  left: 5px;
+  width: 2px;
+  height: 12px;
+}
+
+/* Answer Styling (Hidden by default) */
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s cubic-bezier(0, 1, 0, 1); /* Clean slide animation */
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.faq-answer p {
+  padding: 0 20px 20px 20px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+/* --- THE PURE CSS ACCORDION MAGIC --- */
+
+/* When checkbox is checked: Expand the answer panel */
+.faq-toggle:checked ~ .faq-answer {
+  max-height: 200px; /* Big enough to comfortably fit your text */
+  transition: max-height 0.3s cubic-bezier(0.95, 0.05, 0.795, 0.035);
+}
+
+/* When checkbox is checked: Turn the plus icon into a minus icon */
+.faq-toggle:checked ~ .faq-question .faq-icon::after {
+  transform: rotate(90deg);
+  opacity: 0; /* Hides the vertical line, leaving just the horizontal minus line */
+}
+
+

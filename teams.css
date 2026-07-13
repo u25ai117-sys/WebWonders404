@@ -1,0 +1,183 @@
+/* --- COPY GLOBAL SETTINGS & HEADER FROM DASHBOARD.CSS --- */
+body {
+  background-color: #050814;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  color: #ffffff;
+}
+
+.site-header {
+  background-color: #050814;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.logo { font-size: 20px; font-weight: bold; }
+.search-container { flex-grow: 1; max-width: 500px; margin: 0 20px; }
+.genre-search {
+  width: 100%; min-width: 200px; background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1); color: #ffffff; padding: 10px 18px;
+  border-radius: 20px; outline: none;
+}
+.nav-links { display: flex; align-items: center; gap: 20px; }
+.nav-links a { color: rgba(255, 255, 255, 0.6); text-decoration: none; font-size: 14px; }
+.nav-links a.active, .nav-links a:hover { color: #3b82f6; }
+.nav-links a.login-btn { color: #ffffff; background-color: #3b82f6; padding: 8px 16px; border-radius: 6px; font-weight: bold; }
+
+/* --- TEAMS MAIN GRID CONTAINER SYSTEM --- */
+.teams-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.teams-hero {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.teams-hero h1 { font-size: 32px; margin-bottom: 10px; }
+.teams-hero p { color: rgba(255, 255, 255, 0.5); font-size: 15px; }
+
+/* Flexible layout structure for team display blocks */
+.teams-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+/* --- THE ORGANIZATIONAL CARD SYSTEM --- */
+.team-card {
+  background-color: #02040a; /* Anchor dark layout base color */
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+/* Card Decorative Header Banners */
+.team-banner {
+  height: 60px;
+  width: 100%;
+}
+.team-banner.color-blue { background: linear-gradient(90deg, #1e3a8a, #3b82f6); }
+.team-banner.color-purple { background: linear-gradient(90deg, #4c1d95, #8b5cf6); }
+.team-banner.color-amber { background: linear-gradient(90deg, #78350f, #f59e0b); }
+
+/* Padding Container Box */
+.team-card-content {
+  padding: 0 25px 25px 25px;
+  position: relative;
+}
+
+/* Absolute Positioned Circular Brand Badges */
+.team-badge {
+  width: 60px;
+  height: 60px;
+  background-color: #0d1527;
+  border: 3px solid #02040a;
+  border-radius: 50%;
+  position: absolute;
+  top: -30px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+  color: #ffffff;
+}
+
+.team-name {
+  margin: 45px 0 5px 0;
+  font-size: 20px;
+  color: #ffffff;
+}
+
+.team-region {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 15px;
+}
+
+/* Category Tags Sizing */
+.active-genres {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.genre-tag {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Roster Component Layout Box */
+.roster-preview {
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.roster-preview h3 {
+  margin: 0 0 10px 0;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.roster-preview ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.roster-preview li {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.player-name { font-weight: bold; color: rgba(255, 255, 255, 0.85); }
+.player-role { color: #3b82f6; font-size: 12px; }
+
+/* Call to Action Card Button */
+.view-stats-btn {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.view-stats-btn:hover {
+  background-color: rgba(255, 255, 255, 0.04);
+  border-color: #3b82f6;
+  color: #3b82f6;
+}

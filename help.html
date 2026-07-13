@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Help Centre - EsportsHub</title>
+  <link rel="stylesheet" href="help.css">
+</head>
+<body>
+
+  <!-- GLOBAL NAV HEADER -->
+  <header class="site-header">
+    <div class="logo">🥷 404 Ninjas</div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="teams.html">Teams</a>
+      <a href="profile.html">Profile</a>
+      <a href="login.html" class="login-btn">Login</a>
+    </nav>
+  </header>
+
+  <!-- HELP HERO BANNER SEARCH -->
+  <section class="help-hero">
+    <div class="hero-content">
+      <h1>How can we help you, Player?</h1>
+      <p>Search guides, track system configurations, or learn how to scale tournament brackets.</p>
+      <div class="help-search-container">
+        <input type="text" id="helpKnowledgeSearch" placeholder="Type keywords (e.g., team up, password, bracket resets)...">
+      </div>
+    </div>
+  </section>
+
+  <!-- KNOWLEDGE BASE CONTENT MAIN -->
+  <main class="help-main">
+    
+    <!-- Left Column: Support Categories Grid -->
+    <section class="kb-grid">
+      
+      <!-- Category 1 -->
+      <article class="kb-card" data-category="account">
+        <div class="kb-icon">🔐</div>
+        <h2>Account & Privacy</h2>
+        <p>Manage configurations regarding credential tokens, security keys, data privacy, and profile usernames.</p>
+        <ul class="kb-links">
+          <li><a href="#" class="kb-article-link">Resetting your account password securely</a></li>
+          <li><a href="#" class="kb-article-link">Changing public profile handle limits</a></li>
+          <li><a href="#" class="kb-article-link">Linking discord handles and tokens</a></li>
+        </ul>
+      </article>
+
+      <!-- Category 2 -->
+      <article class="kb-card" data-category="teams">
+        <div class="kb-icon">👥</div>
+        <h2>Team Up Function</h2>
+        <p>Bypass solo matchmaking pipelines completely. Learn to design rosters and request free agents.</p>
+        <ul class="kb-links">
+          <li><a href="#" class="kb-article-link">Creating an active team organization profile</a></li>
+          <li><a href="#" class="kb-article-link">Inviting players to competitive slots</a></li>
+          <li><a href="#" class="kb-article-link">Transferring captain status boundaries</a></li>
+        </ul>
+      </article>
+
+      <!-- Category 3 -->
+      <article class="kb-card" data-category="tournaments">
+        <div class="kb-icon">🏆</div>
+        <h2>Tournament Hubs</h2>
+        <p>Your ultimate operational roadmap for matching up across brackets and rules execution layers.</p>
+        <ul class="kb-links">
+          <li><a href="#" class="kb-article-link">How to check-in for tournament brackets</a></li>
+          <li><a href="#" class="kb-article-link">Submitting match telemetry screenshots</a></li>
+          <li><a href="#" class="kb-article-link">Disputing match scoring disruptions</a></li>
+        </ul>
+      </article>
+
+      <!-- Category 4 -->
+      <article class="kb-card" data-category="technical">
+        <div class="kb-icon">⚙️</div>
+        <h2>Technical Issues</h2>
+        <p>Debug active dashboard feed pipelines, missing platform badges, or socket disconnection events.</p>
+        <ul class="kb-links">
+          <li><a href="#" class="kb-article-link">Troubleshooting dashboard feed syncing lags</a></li>
+          <li><a href="#" class="kb-article-link">Supported game client API integrations</a></li>
+          <li><a href="#" class="kb-article-link">Web app rendering and layout errors</a></li>
+        </ul>
+      </article>
+
+    </section>
+
+    <!-- Right Column: Quick Contact Sidebar Form Component -->
+    <aside class="support-sidebar">
+      <div class="ticket-card">
+        <h3>Direct Support Ticket</h3>
+        <p>Can't find the answers in our active logs? File a priority triage case file to our technical moderator team.</p>
+        <form id="supportTicketForm">
+          <div class="form-group">
+            <label for="ticketEmail">Your Email</label>
+            <input type="email" id="ticketEmail" required>
+          </div>
+          <div class="form-group">
+            <label for="ticketIssue">Issue Category</label>
+            <select id="ticketIssue">
+              <option value="account">Account Access</option>
+              <option value="teams">Team Recruitment Matchmaking</option>
+              <option value="tournaments">Tournament Rules & Brackets</option>
+              <option value="billing">Bug Reports / Others</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="ticketMessage">Detailed Context</label>
+            <textarea id="ticketMessage" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="submit-ticket-btn">Submit Case File</button>
+        </form>
+      </div>
+    </aside>
+
+  </main>
+
+  <footer class="footer-bottom">
+    <p>&copy; 2026 EsportsHub Support Platform. System Status: Optimal.</p>
+  </footer>
+
+</body>
+</html>
