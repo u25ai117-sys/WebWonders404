@@ -127,3 +127,40 @@ body {
   font-size: 14px;
   margin: 25px 0 0 0;
 }
+/* --- EMERGENCY OVERFLOW SAFETY FIX --- */
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden; /* This stops the browser from allowing side-scrolling or weird zooming */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/* Force your esport game images to shrink onto the screen */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* --- MOBILE STACK BREAKPOINT --- */
+@media screen and (max-width: 768px) {
+  /* This automatically intercepts grids/rows and stacks them vertically on mobile */
+  .grid, .row, .cards-container, main, section, header, footer {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    align-items: center !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+
+  /* Stops individual player slots or text blocks from breaking past the screen edge */
+  div, article, aside {
+    max-width: 100% !important;
+  }
+}
